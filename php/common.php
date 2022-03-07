@@ -6,7 +6,7 @@ session_start();
 // staff registration
 if(isset($_POST['register_btn'])){
     $bytes = random_bytes(20);
-    $user_id = var_dump(bin2hex($bytes));
+    $user_id = bin2hex(random_bytes(11));
     $user_Fname = mysqli_escape_string($conn, $_GET['user_fname']);
     $user_Mname = mysqli_escape_string($conn, $_GET['user_mname']);
     $user_Sname = mysqli_escape_string($conn, $_GET['user_sname']);
