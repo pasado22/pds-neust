@@ -4,7 +4,7 @@ require 'clean.php';
 session_start();
 
 // staff registration
-if(isset($_GET['register_btn'])){
+if(isset($_POST['register_btn'])){
     $user_Fname = mysqli_escape_string($conn, $_GET['user_fname']);
     $user_Mname = mysqli_escape_string($conn, $_GET['user_mname']);
     $user_Sname = mysqli_escape_string($conn, $_GET['user_sname']);
