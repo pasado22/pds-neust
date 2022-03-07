@@ -5,6 +5,8 @@ session_start();
 
 // staff registration
 if(isset($_POST['register_btn'])){
+    $bytes = random_bytes(20);
+    $user_id = var_dump(bin2hex($bytes));
     $user_Fname = mysqli_escape_string($conn, $_GET['user_fname']);
     $user_Mname = mysqli_escape_string($conn, $_GET['user_mname']);
     $user_Sname = mysqli_escape_string($conn, $_GET['user_sname']);
@@ -35,7 +37,7 @@ if(isset($_POST['register_btn'])){
     if("admin" === $user_email && "admin" === $user_passw){
         $_SESSION['admin_id'] = "a1ID";
         header("Location: ../page_admin/index.php");
-    } else if ($user_email) {
+    // } else if ($user_email) {
 
     } else {
 
