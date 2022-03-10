@@ -16,7 +16,7 @@ session_start();
 <body>
   <header></header>
   <main>
-    <h1>NEUST STAFF PORTAL</h1>
+    <h1>NEUST PORTAL</h1>
     <?php
     if(isset($_SESSION['msg'])){
       echo check_msg($msg = $_SESSION['msg']);

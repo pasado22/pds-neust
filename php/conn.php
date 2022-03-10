@@ -2,7 +2,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "neust_stf_db";
+$dbname = "pds_db";
 
 // Create connection
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
