@@ -8,15 +8,15 @@ _header("Contact Us");
 
 
 <header></header>
-<a href="index.php">Go back</a>
+
 <h1>NEUST STAFF PORTAL</h1>
 <?php 
 if(isset($_SESSION['msg'])){
   echo check_msg($msg = $_SESSION['msg']);
   session_unset();
 }
-
 ?>
+<a href="index.php">Go back</a>
 <form action="php/common.php" method="GET">
   <input type="text" name="user_Fname" id="" placeholder="First Name" required>
   <input type="text" name="user_Mname" id="" placeholder="Middle Name" required>
