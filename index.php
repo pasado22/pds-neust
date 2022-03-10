@@ -20,7 +20,7 @@ session_start();
     <?php
     if(isset($_SESSION['msg'])){
       echo check_msg($msg = $_SESSION['msg']);
-      session_unset();
+      session_unset($msg);
     }
     ?>
     <ul>

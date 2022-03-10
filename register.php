@@ -1,6 +1,5 @@
 <?php
-include 'php/dry.php';
-include 'php/func.php';
+require 'php/func.php';
 session_start();
 
 _header("NUEST PORTAL - REGISTER");
@@ -14,7 +13,7 @@ _header("NUEST PORTAL - REGISTER");
 <?php 
 if(isset($_SESSION['msg'])){
   echo check_msg($msg = $_SESSION['msg']);
-  session_unset();
+  unset($msg);
 }
 ?>
 <form action="php/common.php" method="POST" autocomplete="off">

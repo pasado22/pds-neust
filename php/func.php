@@ -1,4 +1,25 @@
 <?php
+function _header($title) {
+    echo "
+    <!DOCTYPE html>
+    <html lang='en'>
+    <head>
+      <meta charset='UTF-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <title>$title</title>
+    </head>
+    <body>
+    ";
+}
+
+function _footer($date) {
+    echo "
+    <footer>Copyright &copy; $date</footer>
+    </body>
+    </html>
+    ";
+}
 
 function clean_data($data)
 {
@@ -12,25 +33,16 @@ function check_msg($msg)
 {
     switch ($msg) {
         case 1:
-            return $msg = "<span style='color: red;'>Oops, looks like your trying to access a restricted page!</span>";
+            return $msg = "<br><span style='color: red;'>Oops, looks like your trying to access a restricted page!</span>";
             break;
         case 2:
-            return $msg = "<span style='color: green;'>You're now registered! YAY!</span>";
+            return $msg = "<br><span style='color: green;'>You're now registered! YAY!</span>";
+            break;
+        case 3:
+            return $msg = "<br><span style='color: red;'>Wrong email or password.</span>";
             break;
         default:
             session_unset();
             break;
     }
-}
-
-function generate_string($strength = 16) {
-    $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $input_length = strlen($input);
-    $random_string = '';
-    for($i = 0; $i < $strength; $i++) {
-        $random_character = $input[mt_rand(0, $input_length - 1)];
-        $random_string .= $random_character;
-    }
- 
-    return $random_string;
 }
