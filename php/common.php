@@ -1,6 +1,6 @@
 <?php
 require 'conn.php';
-require 'clean.php';
+require 'func.php';
 session_start();
 
 // staff registration
@@ -14,7 +14,7 @@ if (isset($_POST['register_btn'])) {
     clean_data($user_fname, $user_mname, $user_sname, $user_email, $user_pass);
 
     $stmt = "INSERT INTO `user_main_tbl` (`user_id`, `user_fname`, `user_mname`, `user_sname`, `user_email`, `user_pass`, `user_phone`, `created`, `modfied`) 
-            VALUES ($user_id, '$user_fname', '$user_mname', '$user_sname', '$user_email', '$user_pass', '$user_phone', NOW(), NULL)";
+            VALUES ('$user_id', '$user_fname', '$user_mname', '$user_sname', '$user_email', '$user_pass', '$user_phone', NOW(), NULL)";
     $qry = mysqli_query($conn, $stmt);
 
     if ($qry != false) {

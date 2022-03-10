@@ -10,13 +10,13 @@ _header("NUEST PORTAL - REGISTER");
 <header></header>
 
 <h1>REGISTER</h1>
+<a href="index.php">Go back</a>
 <?php 
 if(isset($_SESSION['msg'])){
   echo check_msg($msg = $_SESSION['msg']);
   session_unset();
 }
 ?>
-<a href="index.php">Go back</a>
 <form action="php/common.php" method="POST" autocomplete="off">
   <input type="text" name="user_fname" id="" placeholder="First Name" required>
   <input type="text" name="user_mname" id="" placeholder="Middle Name" required>
