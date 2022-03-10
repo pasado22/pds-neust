@@ -2,12 +2,12 @@
 include 'php/dry.php';
 include 'php/func.php';
 
-_header("Contact Us");
+_header("NEUST PORTAL - LOGIN");
 ?>
 
 
 <header></header>
-<h1>NEUST STAFF PORTAL</h1>
+<h1>LOGIN</h1>
 <a href="index.php">Go back</a>
 <form action="php/common.php" method="post">
   <input type="text" name="user_email" id="" placeholder="Email">

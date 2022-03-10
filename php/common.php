@@ -13,8 +13,8 @@ if (isset($_POST['register_btn'])) {
     $user_pass = mysqli_escape_string($conn, $_POST['user_pass']);
     clean_data($user_fname, $user_mname, $user_sname, $user_email, $user_pass);
 
-    $stmt = "INSERT INTO `user_main_tbl` (`user_id`, `user_Fname`, `user_Mname`, `user_Sname`, `user_email`, `user_pass`) 
-            VALUES ($user_id, '$user_fname', '$user_mname', '$user_sname', '$user_email', '$user_pass')";
+    $stmt = "INSERT INTO `user_main_tbl` (`user_id`, `user_fname`, `user_mname`, `user_sname`, `user_email`, `user_pass`, `user_phone`, `created`, `modfied`) 
+            VALUES ($user_id, '$user_fname', '$user_mname', '$user_sname', '$user_email', '$user_pass', '$user_phone', NOW(), NULL)";
     $qry = mysqli_query($conn, $stmt);
 
     if ($qry != false) {
@@ -26,14 +26,17 @@ if (isset($_POST['register_btn'])) {
         $_SESSION['msg'] = 1;
         header("Location: ../register.php");
     };
-
-    // staff and admin login
 }
 
 if (isset($_POST['login_btn'])) {
     $user_email = mysqli_escape_string($conn, $_POST['user_email']);
     $user_pass = mysqli_escape_string($conn, $_POST['user_pass']);
     clean_data($user_email, $user_pass);
+
+    if ("admin" === $user_email && "admin" === $user_pass) {
+        $_SESSION['admin_id'] = "a1ID";
+        header("Location: ../page_admin/index.php");
+    }
 
     $stmt = "SELECT * FROM `user_main_tbl` WHERE `user_email`='$user_email' AND `user_pass`='$user_pass'";
     $qry = mysqli_query($conn, $stmt);
@@ -45,7 +48,4 @@ if (isset($_POST['login_btn'])) {
     }
 }
 
-if ("admin" === $user_email && "admin" === $user_pass) {
-    $_SESSION['admin_id'] = "a1ID";
-    header("Location: ../page_admin/index.php");
-}
+
