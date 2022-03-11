@@ -1,5 +1,5 @@
 <?php
-function _header($title) {
+function _headerIndex($title) {
     echo "
     <!DOCTYPE html>
     <html lang='en'>
@@ -13,7 +13,7 @@ function _header($title) {
     ";
 }
 
-function _footer($date) {
+function _footerIndex($date) {
     echo "
     <footer>Copyright &copy; $date</footer>
     </body>
@@ -41,8 +41,11 @@ function check_msg($msg)
         case 3:
             return $msg = "<br><span style='color: red;'>Wrong email or password.</span>";
             break;
+        case 4:
+            return $msg = "<span style='color: pink;'>Welcome back admin. UWU</span>";
+            break;
         default:
-            session_unset();
+            unset($_SESSION['msg']);
             break;
     }
 }

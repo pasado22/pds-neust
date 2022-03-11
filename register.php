@@ -2,7 +2,7 @@
 require 'php/func.php';
 session_start();
 
-_header("NUEST PORTAL - REGISTER");
+_headerIndex("NUEST PORTAL - REGISTER");
 ?>
 
 
@@ -13,7 +13,7 @@ _header("NUEST PORTAL - REGISTER");
 <?php 
 if(isset($_SESSION['msg'])){
   echo check_msg($msg = $_SESSION['msg']);
-  unset($msg);
+  unset($_SESSION['msg']);
 }
 ?>
 <form action="php/common.php" method="POST" autocomplete="off">
@@ -27,4 +27,4 @@ if(isset($_SESSION['msg'])){
 </form>
 
 
-<?php _footer(2022); ?>
+<?php _footerIndex(2022); ?>

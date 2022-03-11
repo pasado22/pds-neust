@@ -1,7 +1,8 @@
 <?php
 require 'php/func.php';
+session_start();
 
-_header("NEUST PORTAL - LOGIN");
+_headerIndex("NEUST PORTAL - LOGIN");
 ?>
 
 
@@ -11,7 +12,7 @@ _header("NEUST PORTAL - LOGIN");
 <?php 
 if(isset($_SESSION['msg'])){
   echo check_msg($msg = $_SESSION['msg']);
-  unset($msg);
+  unset($_SESSION['msg']);
 }
 ?>
 <form action="php/common.php" method="post" autocomplete="off">
@@ -21,4 +22,4 @@ if(isset($_SESSION['msg'])){
 </form>
 
 
-<?php _footer(2022); ?>
+<?php _footerIndex(2022); ?>

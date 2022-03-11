@@ -29,13 +29,19 @@ if (isset($_POST['register_btn'])) {
     };
 }
 
+// login
 if (isset($_POST['login_btn'])) {
     $user_email = mysqli_escape_string($conn, $_POST['user_email']);
     $user_pass = mysqli_escape_string($conn, $_POST['user_pass']);
     clean_data($user_email, $user_pass);
 
-    if ("admin" === $user_email && "admin" === $user_pass) {
-        $_SESSION['admin_id'] = "a1ID";
+    $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$user_email' AND `admin_pass`='$user_pass'";
+    $qry = mysqli_query($conn, $stmt);
+    $row = mysqli_fetch_array($qry);
+
+    if ("admin" == $user_email && "admin" == $user_pass) {
+        $_SESSION['admin_id'] = $row['admin_id'];
+        $_SESSION['msg'] = 4;
         header("Location: ../page_admin/index.php");
     }
 
@@ -46,11 +52,10 @@ if (isset($_POST['login_btn'])) {
     if (mysqli_num_rows($qry) == 1) {
         $_SESSION['uid'] = $row['user_id'];
         header("Location: ../page_user/index.php");
-    } else {
-        $_SESSION['msg'] = 2;
-        header("Location: ../page_admin/index.php");
     }
-
-    $_SESSION['msg'] = 1;
-    header("Location: ../register.php");
 }
+
+
+// redirect unauthorized access
+$_SESSION['msg'] = 1;
+header("Location: ../index.php");
