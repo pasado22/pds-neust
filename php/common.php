@@ -3,7 +3,7 @@ require 'conn.php';
 require 'func.php';
 session_start();
 
-// staff registration
+// user registration
 if (isset($_POST['register_btn'])) {
     $user_id = bin2hex(random_bytes(11));
     $user_fname = mysqli_escape_string($conn, $_POST['user_fname']);
