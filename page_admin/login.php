@@ -1,5 +1,5 @@
 <?php
-require 'php/func.php';
+require '../php/func.php';
 session_start();
 
 _headerIndex("ADMIN - LOGIN");

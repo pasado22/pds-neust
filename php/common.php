@@ -55,7 +55,7 @@ if (isset($_POST['login_btn'])) {
         $select->execute();
         $row = $select->fetch();
     } catch(PDOException $e) {
-        echo $select . "<br>" . $e->getMessage();
+        echo $e->getMessage();
     }
 
     $_SESSION['msg'] = 4;
