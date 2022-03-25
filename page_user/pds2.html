@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDS Form</title>
+  </head>
+  <body>
+    <p>Personal Data Sheet<br/>Warning: Any misrepresentation made in the Personal Daata Sheet and the Work Experience Sheet Shall cause the filing of administrative/criminal case/s against the person concerned.<br/>Read the attached guide to filling out the personal data sheet (pds) before accomplishing the pds form.<br/>Print legibly. Tick appropriate boxes and use separate sheet if necessary. Indicate N/A if not applicable. Do not abbreviate</p>
+    <label for="cs_ID">1. CS ID No. </label>
+    <input type="text" name="cs_ID" id="cs_ID" placeholder="(Do not fill up. For CSC use only)" disabled>
+    <br>
+    <span>I. Personal information</span>
+    <br />
+    <label for="user_sname">Surname </label>
+    <input type="text" name="user_sname" id="user_sname" readonly/>
+    <label for="firName">First Name </label>
+    <input type="text" name="firName" id="firName" readonly/>
+    <label for="midName">Middle Name </label>
+    <input type="text" name="midName" id="midName" readonly/>
+    <label for="bday">Date of Birth </label>
+    <input type="date" name="bday" id="bday" />
+    <label for="plcBirt">Place of Birth </label>
+    <input type="text" name="plcBirt" id="plcBirt" />
+    <br />
+    <span>Sex </span>
+    <input type="radio" name="gender" id="mgender" value="male">
+    <label for="mgender">Male</label>
+    <input type="radio" name="gender" id="fgender" value="female">
+    <label for="fgender">Female</label>
+    <br>
+    <span>Civil Status </span>
+    <input type="radio" name="civStat" id="gender" value="single">
+    <label for="gender">Single</label>
+    <input type="radio" name="civStat" id="gender" value="married">
+    <label for="gender">Married</label>
+    <input type="radio" name="civStat" id="gender" value="widowed">
+    <label for="gender">Widowed</label>
+    <input type="radio" name="civStat" id="gender" value="separated">
+    <label for="gender">Separated</label>
+    <br>
+    <label for="weight">Weight(kg) </label>
+    <input type="number" name="weight" id="weight" />
+    <label for="height">Height(m) </label>
+    <input type="number" name="height" id="height" />
+    <label for="weight">Weight(kg) </label>
+    <input type="number" name="weight" id="weight" />
+    <label for="blodType">Blood Type </label>
+    <input type="text" name="blodType" id="blodType">
+    <br />
+    <label for="gsisID">GSIS ID No </label>
+    <input type="text" name="gsisID" id="gsisID">
+    <label for="pgibigID">PAG-IBIG ID No </label>
+    <input type="text" name="pgibigID" id="pgibigID">
+    <label for="philHNo">PHILHEALTH No</label>
+    <input type="text" name="philHID" id="philHID">
+    <label for="sssNo">SSS No </label>
+    <input type="text" name="sssNo" id="sssNo">
+    <label for="tinNo">TIN No </label>
+    <input type="text" name="tinNo" id="tinNo">
+    <label for="agenEmNo">AGENCY EMPLOYEE No</label>
+    <input type="text" name="agenEmNo" id="agenEmNo">
+    <br>
+    <span>Citizenship<br>(If holder of dual citizenship, please indicate the details.)</span>
+    <input type="radio" name="citizenship" id="c_Filipino" value="filipino">
+    <label for="c_Filipino">Filipino</label>
+    <input type="radio" name="citizenship" id="c_Dual" value="dual">
+    <label for="c_Dual">Dual Citizenship</label>
+    <input type="radio" name="citizenship" id="c_Dual" value="dual">
+    <label for="c_Dual_birth">by birth</label>
+    <input type="radio" name="citizenship" id="c_Dual" value="dual">
+    <label for="c_Dual_natural">by naturalization</label>
+    <label for="citizenship_other">Pls. indicate country </label>
+    <input type="text" name="citizenship_other" id="citizenship_other">
+    <br>
+    <span>Residential Address</br></span>
+    <label for="addr_hbl">House/Block/Lot No. </label>
+    <input type="text" name="h-b-l" id="h-b-l">
+    <label for="addr_strt">Street </label>
+    <input type="text" name="addr_strt" id="addr_strt">
+    <label for="addr_subd">Subdivision/Village </label>
+    <input type="text" name="addr_subd" id="addr_subd">
+    <label for="addr_brgy">Barangay </label>
+    <input type="text" name="addr_brgy" id="addr_brgy">
+    <label for="addr_city">City/Municipality </label>
+    <input type="text" name="addr_city" id="addr_city">
+    <label for="addr_prov">Province </label>
+    <input type="text" name="addr_prov" id="addr_prov">
+    <label for="z_code">Zip Code </label>
+    <input type="text">
+    <br>
+    <label for="tel_No">19. Telephone no. </label>
+    <input type="text" name="tel_No" id="tel_No">
+    <label for="tel_No">20. Mobile no. </label>
+    <input type="text" name="tel_No" id="tel_No">
+    <label for="tel_No">21. E-mail address (if any) </label>
+    <input type="text" name="tel_No" id="tel_No">
+    <span>II. Family background</span>
+    <label for="spous_surName">22. Spouse's Surname </label>
+    <input type="text" name="spous_surName" id="spous_surName">
+    <label for="spous_firName">First Name </label>
+    <input type="text" name="spous_firName" id="spous_firName">
+    <label for="spous_midName">Middle Name </label>
+    <input type="text" name="spous_midName" id="spous_midName">
+    <label for="spous_occup">Occupation </label>
+    <input type="text" name="spous_occup" id="spous_occup">
+    <label for="spous_empl">Employer/Business name </label>
+    <input type="text" name="spous_empl" id="spous_empl">
+    <label for="spous_telNo">Telephone No.</label>
+    <input type="text" name="spous_telNo" id="spous_telNo">
+    <label for="child_name">23. Name of Children </label>
+    <input type="text" name="child_name" id="child_name">
+    <label for="child_bday">Date of birth</label>
+    <input type="date" name="child_bday" id="child_bday">
+    <label for="fthr_surName">24. Father's Surname </label>
+    <input type="text" name="fthr_surName" id="fthr_surName">
+    <label for="fthr_firName">First Name </label>
+    <input type="text" name="fthr_firName" id="fthr_firName">
+    <label for="fthr_midName">Middle Name </label>
+    <input type="text" name="fthr_midName" id="fthr_midName">
+    <label for="mthr_surName">25. Mother's Maiden Name </label>
+    <input type="text" name="mthr_surName" id="mthr_surName">
+    <label for="mthr_surName">Surname </label>
+    <input type="text" name="mthr_surName" id="mthr_surName">
+    <label for="mthr_firName">First Name </label>
+    <input type="text" name="mthr_firName" id="mthr_firName">
+    <label for="mthr_midName">Middle Name </label>
+    <input type="text" name="mthr_midName" id="mthr_midName">
+    <span>III. Educational Background</span>
+    26. Level
+    <label for="educ_elem_name">Name of Elementary School</label>
+    <input type="text" name="educ_elem_name" id="educ_elem_name">
+    <label for="educ_elem_bedc">Basic Education/Degree/Course(Elementary School)</label>
+    
+  </body>
+</html>
