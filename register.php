@@ -17,12 +17,9 @@ if(isset($_SESSION['msg'])){
 }
 ?>
 <form action="php/common.php" method="POST" autocomplete="off">
-  <input type="text" name="user_fname" id="" placeholder="First Name" required>
-  <input type="text" name="user_mname" id="" placeholder="Middle Name" required>
-  <input type="text" name="user_sname" id="" placeholder="Surname" required>
-  <input type="email" name="user_email" id="" placeholder="Email" required>
-  <input type="password" name="user_pass" id="" placeholder="Password" required>
-  <input type="text" name="user_phone" id="" placeholder="Phone Number" required>
+  <input type="email" name="user_email" id="" placeholder="Email" maxlength="50" required>
+  <input type="password" name="user_pass" id="" placeholder="Password" maxlength="24" required>
+  <input type="text" name="user_phone" id="" placeholder="Phone Number" maxlength="24" required>
   <button type="submit" name="register_btn" value="Register">Register</button>
 </form>
 

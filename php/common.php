@@ -6,29 +6,23 @@ session_start();
 // user registration
 if (isset($_POST['register_btn'])) {
     $u_id = bin2hex(random_bytes(11));
-    $user_fname = $_POST['user_fname'];
-    $user_mname = $_POST['user_mname'];
-    $user_sname = $_POST['user_sname'];
     $user_email = $_POST['user_email'];
     $user_pass = $_POST['user_pass'];
     $user_phone = $_POST['user_phone'];
 
-    clean_data($user_fname, $user_mname, $user_sname, $user_email, $user_pass, $user_phone);
+    clean_data($user_email, $user_pass, $user_phone);
 
     try {
-        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `user_fname`, `user_mname`, `user_sname`, `user_email`, `user_pass`, `user_phone`, `created`, `modified`) 
-        VALUES (:u_id, :user_fname, :user_mname, :user_sname, :user_email, :user_pass, :user_phone, NOW(), NULL)");
+        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `user_email`, `user_pass`, `user_phone`, `created`) 
+        VALUES (:u_id, :user_email, :user_pass, :user_phone, NOW())");
         $insert->execute([
             'u_id' => $u_id,
-            ':user_fname' => $user_fname,
-            ':user_mname' => $user_mname,
-            ':user_sname' => $user_sname,
             ':user_email' => $user_email,
             ':user_pass' => $user_pass,
             ':user_phone' => $user_phone
         ]);
     } catch (PDOException $e) {
-        echo $insert . "<br>" . $e->getMessage();
+        echo "<br>" . $e->getMessage();
     } finally {
         $conn = NULL;
     }
