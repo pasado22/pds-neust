@@ -49,18 +49,19 @@ if (isset($_POST['login_btn'])) {
     }
 
     try {
-        $select = $conn->prepare("SELECT * FROM `admin_tbl` WHERE `user_email` = :user_email AND `user_pass` = :user_pass");
-        $select->bindParam(':user_email', $user_email, PDO::PARAM_STR); //https://www.php.net/manual/en/pdo.constants.php
-        $select->bindParam(':user_pass', $user_passs, PDO::PARAM_STR);
-        $select->execute();
+        $select = $conn->prepare("SELECT * FROM `user_main_tbl` WHERE `user_email` = :user_email AND `user_pass` = :user_pass");
+        $select->execute([
+            ':user_email' => $user_email,
+            ':user_pass' => $user_pass
+        ]);
         $row = $select->fetch();
     } catch(PDOException $e) {
         echo $e->getMessage();
     }
 
-    $_SESSION['msg'] = 4;
     $_SESSION['uid'] = $row['user_id'];
-    $conn = null;
+    $_SESSION['vrfy'] = $row['verify'];
+    $_SESSION['msg'] = 4;
     header("Location: ../page_user/index.php");
 }
     // $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$user_email' AND `admin_pass`='$user_pass'";

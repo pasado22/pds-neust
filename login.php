@@ -15,7 +15,7 @@ if(isset($_SESSION['msg'])){
   unset($_SESSION['msg']);
 }
 ?>
-<form action="php/common.php" method="post" autocomplete="off">
+<form action="php/common.php" method="post" autocomplete="">
   <input type="text" name="user_email" id="" placeholder="Email">
   <input type="password" name="user_pass" id="" placeholder="Password">
   <button type="submit" name="login_btn" value="Login">Login</button>
