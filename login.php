@@ -10,10 +10,7 @@ _headerIndex("NEUST PORTAL - LOGIN");
 <h1>LOGIN</h1>
 <a href="index.php">Go back</a>
 <?php 
-if(isset($_SESSION['msg'])){
-  echo check_msg($msg = $_SESSION['msg']);
-  unset($_SESSION['msg']);
-}
+get_urlmessage();
 ?>
 <form action="php/common.php" method="post" autocomplete="">
   <input type="text" name="user_email" id="" placeholder="Email">

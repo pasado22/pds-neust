@@ -5,70 +5,91 @@ session_start();
 
 // user registration
 if (isset($_POST['register_btn'])) {
-    $u_id = bin2hex(random_bytes(11));
-    $user_email = $_POST['user_email'];
-    $user_pass = $_POST['user_pass'];
-    $user_phone = $_POST['user_phone'];
+    $uid = bin2hex(random_bytes(11));
 
-    clean_data($user_email, $user_pass, $user_phone);
+    $psl_user_sname = $_POST['user_sname'];
+    $psl_user_fname = $_POST['user_fname'];
+    $psl_user_mname = $_POST['user_mname'];
+    $addr_user_brgy = $_POST['user_brgy'];
+    $addr_user_city = $_POST['user_city'];
+    $addr_user_prov = $_POST['user_prov'];
+    $main_user_email = $_POST['user_email'];
+    $main_user_pass = $_POST['user_pass'];
+    $main_user_phone = $_POST['user_phone'];
 
     try {
-        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `user_email`, `user_pass`, `user_phone`, `created`) 
-        VALUES (:u_id, :user_email, :user_pass, :user_phone, NOW())");
+        
+        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `created`) 
+        VALUES (:userid, :main_user_email, :main_user_pass, NOW())");
         $insert->execute([
-            'u_id' => $u_id,
-            ':user_email' => $user_email,
-            ':user_pass' => $user_pass,
-            ':user_phone' => $user_phone
+            ':userid' => $uid,
+            ':main_user_email' => $main_user_email,
+            ':main_user_pass' => $main_user_pass
         ]);
+
+        $uid = $conn->lastInsertId();
+
+        $insert2 = $conn->prepare("INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`) 
+        VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname)");
+        $insert2->execute([
+            ':userid' => $uid,
+            ':psl_user_sname' => $psl_user_sname,
+            ':psl_user_fname' => $psl_user_fname,
+            ':psl_user_mname' => $psl_user_mname
+        ]);
+
+        $insert3 = $conn->prepare("INSERT INTO `user_addr_tbl` (`user_id`, `addr_user_brgy`, `addr_user_city`, `addr_user_prov`) 
+        VALUES (:userid, :addr_user_brgy, :addr_user_city, :addr_user_prov)");
+        $insert3->execute([
+            ':userid' => $uid,
+            ':addr_user_brgy' => $addr_user_brgy,
+            ':addr_user_city' => $addr_user_city,
+            ':addr_user_prov' => $addr_user_prov
+        ]);
+
     } catch (PDOException $e) {
         echo "<br>" . $e->getMessage();
     } finally {
         $conn = NULL;
     }
 
-    $_SESSION['msg'] = 2;
-    header("Location: ../index.php");
+    header("Location: ../index.php?success=You're registered! YAY!");
 }
 
 // login user
 if (isset($_POST['login_btn'])) {
-    $user_email = $_POST['user_email'];
-    $user_pass = $_POST['user_pass'];
+    $main_user_email = $_POST['user_email'];
+    $main_user_pass = $_POST['user_pass'];
 
-    clean_data($user_email, $user_pass);
-
-    if ("admin" == $user_email && "admin" == $user_pass) {
+    if ("admin" == $main_user_email && "admin" == $main_user_pass) {
         header("Location: ../page_admin/login.php");
     }
 
     try {
-        $select = $conn->prepare("SELECT * FROM `user_main_tbl` WHERE `user_email` = :user_email AND `user_pass` = :user_pass");
+        $select = $conn->prepare("SELECT * FROM `user_main_tbl` WHERE `main_user_email` = :main_user_email AND `main_user_pass` = :main_user_pass");
         $select->execute([
-            ':user_email' => $user_email,
-            ':user_pass' => $user_pass
+            ':main_user_email' => $main_user_email,
+            ':main_user_pass' => $main_user_pass
         ]);
         $row = $select->fetch();
     } catch(PDOException $e) {
         echo $e->getMessage();
     }
 
-    $_SESSION['uid'] = $row['user_id'];
-    $_SESSION['vrfy'] = $row['verify'];
-    $_SESSION['msg'] = 4;
-    header("Location: ../page_user/index.php");
+    $_SESSION['user_id'] = $row['user_id'];
+    header("Location: ../page_user/index.php?success=Welcome back!");
 }
-    // $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$user_email' AND `admin_pass`='$user_pass'";
+    // $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$main_user_email' AND `admin_pass`='$main_user_pass'";
     // $qry = mysqli_query($conn, $stmt);
     // $row = mysqli_fetch_array($qry);
 
-    // if ("admin" == $user_email && "admin" == $user_pass) {
+    // if ("admin" == $main_user_email && "admin" == $main_user_pass) {
     //     $_SESSION['admin_id'] = $row['admin_id'];
     //     $_SESSION['msg'] = 4;
     //     header("Location: ../page_admin/index.php");
     // }
 
-    // $stmt = "SELECT * FROM `user_main_tbl` WHERE `user_email`='$user_email' AND `user_pass`='$user_pass'";
+    // $stmt = "SELECT * FROM `user_main_tbl` WHERE `main_user_email`='$main_user_email' AND `main_user_pass`='$main_user_pass'";
     // $qry = mysqli_query($conn, $stmt);
     // $row = mysqli_fetch_array($qry);
 
@@ -84,3 +105,5 @@ if (isset($_POST['login_admin'])) {
 
 
 // redirect unauthorized access
+// header("location: ../index.php?error=Oops, looks like your trying to access a restricted page!");
+// die();

@@ -1,15 +1,17 @@
 <?php
+include '../php/func.php';
 session_start();
-$uid = $_SESSION['uid'];
-$verify = $_SESSION['vrfy'];
+$user_id = $_SESSION['user_id'];
 
-if ($verify == false) {
-    header("location: pds.php");
-} else if ($uid != true) {
-    $_SESSION['msg'] = 6;
-    die(header("location: ../index.php"));
-}
+// if ($verify == false) {
+//     header("location: pds.php");
+// } else if ($uid != true) {
+//     $_SESSION['msg'] = 6;
+//     die(header("location: ../index.php"));
+// }
 
-echo $uid . " " . + $verify;
-echo "</br>UWU <a href='../php/logout.php'>Logout</a>";
+get_urlmessage();
+echo "</br>$user_id";
+echo "</br><a href='../php/logout.php'>Logout</a>";
+echo "</br><strong><a href='../php/pds.php'>PDS</a></strong>";
 ?>

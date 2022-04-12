@@ -23,34 +23,24 @@ function _footerIndex($date)
     ";
 }
 
-function clean_data($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+// // Depricated
+// function clean_data($data)
+// {
+//     $data = trim($data);
+//     $data = stripslashes($data);
+//     $data = htmlspecialchars($data);
+//     return $data;
+// }
 
-function check_msg($msg)
+function get_urlmessage()
 {
-    switch ($msg) {
-        case 1:
-            return $msg = "<br><span style='color: red;'>Oops, looks like your trying to access a restricted page!</span>";
-            break;
-        case 2:
-            return $msg = "<br><span style='color: green;'>You're now registered! YAY!</span>";
-            break;
-        case 3:
-            return $msg = "<br><span style='color: red;'>Wrong email or password.</span>";
-            break;
-        case 4:
-            return $msg = "<span style='color: pink;'>Welcome back. UWU</span>";
-            break;
-        case 5:
-            return $msg = "<span>Successfuly logout</span>";
-            break;
-        default:
-            unset($_SESSION['msg']);
-            break;
+    if (isset($_GET['error'])) {
+        $url_msg = $_GET['error'];
+        echo "<span style='color: red'>$url_msg</span>";
+    } else if (isset($_GET['success'])){
+        $url_smg = $_GET['success'];
+        echo "<span style='color: green'>$url_smg</span>";
+    } else {
+        unset($url_msg);
     }
 }

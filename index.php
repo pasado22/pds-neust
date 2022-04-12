@@ -10,10 +10,16 @@ _headerIndex("NEUST PORTAL - HOME");
 <main>
   <h1>NEUST PORTAL</h1>
   <?php
-  if (isset($_SESSION['msg'])) {
-    echo check_msg($msg = $_SESSION['msg']);
-    unset($_SESSION['msg']);
-  }
+  // if (isset($_SESSION['msg'])) {
+  //   echo check_msg($msg = $_SESSION['msg']);
+  //   unset($_SESSION['msg']);
+  // }
+  // if(isset($_GET['error'])){
+  //   $err_msg = $_GET['error'];
+  //   echo "<span style='color: red'>$err_msg</span>";
+  //   unset($err_msg);
+  // }
+  get_urlmessage();
   ?>
   <ul>
     <li>
