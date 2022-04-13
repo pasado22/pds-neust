@@ -10,16 +10,16 @@ if (isset($_POST['register_btn'])) {
     $psl_user_sname = $_POST['user_sname'];
     $psl_user_fname = $_POST['user_fname'];
     $psl_user_mname = $_POST['user_mname'];
+    $psl_user_bdate = $_POST['user_bday'];
     $addr_user_brgy = $_POST['user_brgy'];
     $addr_user_city = $_POST['user_city'];
     $addr_user_prov = $_POST['user_prov'];
     $main_user_email = $_POST['user_email'];
     $main_user_pass = $_POST['user_pass'];
-    $main_user_phone = $_POST['user_phone'];
 
     try {
         
-        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `created`) 
+        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `main_created`) 
         VALUES (:userid, :main_user_email, :main_user_pass, NOW())");
         $insert->execute([
             ':userid' => $uid,
@@ -27,15 +27,14 @@ if (isset($_POST['register_btn'])) {
             ':main_user_pass' => $main_user_pass
         ]);
 
-        $uid = $conn->lastInsertId();
-
-        $insert2 = $conn->prepare("INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`) 
-        VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname)");
+        $insert2 = $conn->prepare("INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`, `psl_user_bdate`) 
+        VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname, :psl_user_bdate)");
         $insert2->execute([
             ':userid' => $uid,
             ':psl_user_sname' => $psl_user_sname,
             ':psl_user_fname' => $psl_user_fname,
-            ':psl_user_mname' => $psl_user_mname
+            ':psl_user_mname' => $psl_user_mname,
+            ':psl_user_bdate' => $psl_user_bdate
         ]);
 
         $insert3 = $conn->prepare("INSERT INTO `user_addr_tbl` (`user_id`, `addr_user_brgy`, `addr_user_city`, `addr_user_prov`) 
@@ -53,7 +52,7 @@ if (isset($_POST['register_btn'])) {
         $conn = NULL;
     }
 
-    header("Location: ../index.php?success=You're registered! YAY!");
+    // header("Location: ../index.php?success=You're registered! YAY!");
 }
 
 // login user
