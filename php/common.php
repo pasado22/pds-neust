@@ -18,34 +18,29 @@ if (isset($_POST['register_btn'])) {
     $main_user_pass = $_POST['user_pass'];
 
     try {
-        
-        $insert = $conn->prepare("INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `main_created`) 
-        VALUES (:userid, :main_user_email, :main_user_pass, NOW())");
+        $conn->beginTransaction();
+
+        $sql = "
+        INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `main_created`) VALUES (:userid, :main_user_email, :main_user_pass, NOW());
+        INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`, `psl_user_bdate`) VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname, :psl_user_bdate);
+        INSERT INTO `user_addr_tbl` (`user_id`, `addr_user_brgy`, `addr_user_city`, `addr_user_prov`) VALUES (:userid, :addr_user_brgy, :addr_user_city, :addr_user_prov);
+        ";
+
+        $insert = $conn->prepare($sql);
         $insert->execute([
             ':userid' => $uid,
             ':main_user_email' => $main_user_email,
-            ':main_user_pass' => $main_user_pass
-        ]);
-
-        $insert2 = $conn->prepare("INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`, `psl_user_bdate`) 
-        VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname, :psl_user_bdate)");
-        $insert2->execute([
-            ':userid' => $uid,
+            ':main_user_pass' => $main_user_pass,
             ':psl_user_sname' => $psl_user_sname,
             ':psl_user_fname' => $psl_user_fname,
             ':psl_user_mname' => $psl_user_mname,
-            ':psl_user_bdate' => $psl_user_bdate
-        ]);
-
-        $insert3 = $conn->prepare("INSERT INTO `user_addr_tbl` (`user_id`, `addr_user_brgy`, `addr_user_city`, `addr_user_prov`) 
-        VALUES (:userid, :addr_user_brgy, :addr_user_city, :addr_user_prov)");
-        $insert3->execute([
-            ':userid' => $uid,
+            ':psl_user_bdate' => $psl_user_bdate,
             ':addr_user_brgy' => $addr_user_brgy,
             ':addr_user_city' => $addr_user_city,
             ':addr_user_prov' => $addr_user_prov
         ]);
 
+        $conn->commit();
     } catch (PDOException $e) {
         echo "<br>" . $e->getMessage();
     } finally {
@@ -71,31 +66,31 @@ if (isset($_POST['login_btn'])) {
             ':main_user_pass' => $main_user_pass
         ]);
         $row = $select->fetch();
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo $e->getMessage();
     }
 
     $_SESSION['user_id'] = $row['user_id'];
     header("Location: ../page_user/index.php?success=Welcome back!");
 }
-    // $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$main_user_email' AND `admin_pass`='$main_user_pass'";
-    // $qry = mysqli_query($conn, $stmt);
-    // $row = mysqli_fetch_array($qry);
+// $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$main_user_email' AND `admin_pass`='$main_user_pass'";
+// $qry = mysqli_query($conn, $stmt);
+// $row = mysqli_fetch_array($qry);
 
-    // if ("admin" == $main_user_email && "admin" == $main_user_pass) {
-    //     $_SESSION['admin_id'] = $row['admin_id'];
-    //     $_SESSION['msg'] = 4;
-    //     header("Location: ../page_admin/index.php");
-    // }
+// if ("admin" == $main_user_email && "admin" == $main_user_pass) {
+//     $_SESSION['admin_id'] = $row['admin_id'];
+//     $_SESSION['msg'] = 4;
+//     header("Location: ../page_admin/index.php");
+// }
 
-    // $stmt = "SELECT * FROM `user_main_tbl` WHERE `main_user_email`='$main_user_email' AND `main_user_pass`='$main_user_pass'";
-    // $qry = mysqli_query($conn, $stmt);
-    // $row = mysqli_fetch_array($qry);
+// $stmt = "SELECT * FROM `user_main_tbl` WHERE `main_user_email`='$main_user_email' AND `main_user_pass`='$main_user_pass'";
+// $qry = mysqli_query($conn, $stmt);
+// $row = mysqli_fetch_array($qry);
 
-    // if (mysqli_num_rows($qry) == 1) {
-    //     $_SESSION['uid'] = $row['user_id'];
-    //     header("Location: ../page_user/index.php");
-    // }
+// if (mysqli_num_rows($qry) == 1) {
+//     $_SESSION['uid'] = $row['user_id'];
+//     header("Location: ../page_user/index.php");
+// }
 
 
 // login admin

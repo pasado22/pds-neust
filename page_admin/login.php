@@ -9,7 +9,7 @@ _headerIndex("ADMIN - LOGIN");
 <header></header>
 <h1>ADMIN - LOGIN</h1>
 <a href="../index.php">Go back</a>
-<?php 
+<?php
 get_urlmessage();
 ?>
 <form action="php/common.php" method="post" autocomplete="off">

@@ -1,16 +1,8 @@
 <?php
-// $bytes = random_bytes(20);
-// echo $user_id = var_dump(bin2hex($bytes));
+require 'php/conn.php';
+require 'php/func.php';
 
 
+multi_insert('107dc8e30ed');
 
 ?>
-
-
-<html>
-
-<form action="#" method="get">
-    <input type="date" name="user_bday" id="">
-    <button type="submit">Test</button>
-</form>
-</html>
