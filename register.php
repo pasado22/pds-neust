@@ -13,7 +13,7 @@ _headerIndex("NUEST PORTAL - REGISTER");
 <?php 
 get_urlmessage();
 ?>
-<form action="test.php" method="POST" autocomplete="off">
+<form action="php/common.php" method="POST" autocomplete="off">
   <input type="text" name="user_fname" id="" placeholder="First name" maxlength="12" required>
   <input type="text" name="user_mname" id="" placeholder="Middle name" maxlength="12" required>
   <input type="text" name="user_sname" id="" placeholder="Sur name" maxlength="12" required><br>

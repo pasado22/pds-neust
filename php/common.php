@@ -3,7 +3,7 @@ require 'conn.php';
 require 'func.php';
 session_start();
 
-// user registration
+// User Registration v1.0
 if (isset($_POST['register_btn'])) {
     $uid = bin2hex(random_bytes(11));
 
@@ -17,13 +17,28 @@ if (isset($_POST['register_btn'])) {
     $main_user_email = $_POST['user_email'];
     $main_user_pass = $_POST['user_pass'];
 
+    $str1 = ucfirst($psl_user_fname);
+    $str2 = ucfirst($psl_user_sname);
+    $str3 = "A user named: $str1 $str2, has just created an account.";
+
     try {
-        $conn->beginTransaction();
 
         $sql = "
         INSERT INTO `user_main_tbl` (`user_id`, `main_user_email`, `main_user_pass`, `main_created`) VALUES (:userid, :main_user_email, :main_user_pass, NOW());
         INSERT INTO `user_psl_tbl` (`user_id`, `psl_user_sname`, `psl_user_fname`, `psl_user_mname`, `psl_user_bdate`) VALUES (:userid, :psl_user_sname, :psl_user_fname, :psl_user_mname, :psl_user_bdate);
         INSERT INTO `user_addr_tbl` (`user_id`, `addr_user_brgy`, `addr_user_city`, `addr_user_prov`) VALUES (:userid, :addr_user_brgy, :addr_user_city, :addr_user_prov);
+        INSERT INTO `user_card_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_educbg_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_fmly_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_lnd_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_other1_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_other2_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_proof_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_ref_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_service_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_vlntry_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `user_work_tbl` (`user_id`) VALUES (:userid);
+        INSERT INTO `activity_log` (`act_time`, `act_text`) VALUES (NOW(), :act_text);
         ";
 
         $insert = $conn->prepare($sql);
@@ -37,10 +52,10 @@ if (isset($_POST['register_btn'])) {
             ':psl_user_bdate' => $psl_user_bdate,
             ':addr_user_brgy' => $addr_user_brgy,
             ':addr_user_city' => $addr_user_city,
-            ':addr_user_prov' => $addr_user_prov
+            ':addr_user_prov' => $addr_user_prov,
+            ':act_text' => $str3
         ]);
 
-        $conn->commit();
     } catch (PDOException $e) {
         echo "<br>" . $e->getMessage();
     } finally {
