@@ -23,7 +23,7 @@ function _footerIndex($date)
     ";
 }
 
-// // Depricated
+// // DEPRICATED
 // function clean_data($data)
 // {
 //     $data = trim($data);
@@ -45,32 +45,26 @@ function get_urlmessage()
     }
 }
 
-// prototype
-function multi_insert($uid)
-{
-    require 'conn.php';
-
-    try {
-        $data = []; //an array
-        $conn->beginTransaction();
-        $insert = $conn->prepare("INSERT INTO `table` (`col`, `col2`, `col3`) VALUES (?,?,?)");
-        for ($i = 0; $i < count($data); $i++) {
-            $insert->execute($data[$i]);
-        }
-        $conn->commit();
-
-
-
-        while($i!=count($table)){
-            $table = ['user_card_tbl', 'user_educbg'];
-            $insert = $conn->prepare("INSERT INTO `$table` (`user_id`) VALUES ('$uid')");
-
-            
-            $i++;
-        }
-    } catch (PDOException $e) {
-        echo "<strong>" . $e->getMessage() . "</strong>";
-    } finally {
-        $conn = NULL;
-    }
-}
+// // prototype WARNING DEPRICATED
+// function multi_insert($uid)
+// {
+//     require 'conn.php';
+//     try {
+//         $data = []; //an array
+//         $conn->beginTransaction();
+//         $insert = $conn->prepare("INSERT INTO `table` (`col`, `col2`, `col3`) VALUES (?,?,?)");
+//         for ($i = 0; $i < count($data); $i++) {
+//             $insert->execute($data[$i]);
+//         }
+//         $conn->commit();
+//         while($i!=count($table)){
+//             $table = ['user_card_tbl', 'user_educbg'];
+//             $insert = $conn->prepare("INSERT INTO `$table` (`user_id`) VALUES ('$uid')");      
+//             $i++;
+//         }
+//     } catch (PDOException $e) {
+//         echo "<strong>" . $e->getMessage() . "</strong>";
+//     } finally {
+//         $conn = NULL;
+//     }
+// }

@@ -62,16 +62,18 @@ if (isset($_POST['register_btn'])) {
         $conn = NULL;
     }
 
-    // header("Location: ../index.php?success=You're registered! YAY!");
+    // Disable redirect if record user doesn't appear on the database
+    header("Location: ../index.php?success=You're registered! YAY!");
 }
 
-// login user
+// user login w/ admin exit
 if (isset($_POST['login_btn'])) {
     $main_user_email = $_POST['user_email'];
     $main_user_pass = $_POST['user_pass'];
 
-    if ("admin" == $main_user_email && "admin" == $main_user_pass) {
-        header("Location: ../page_admin/login.php");
+    //redirect to admin login page
+    if ("admin" === $main_user_email && "admin" === $main_user_pass) {
+        die(header("Location: ../page_admin/index.php"));
     }
 
     try {
@@ -88,28 +90,25 @@ if (isset($_POST['login_btn'])) {
     $_SESSION['user_id'] = $row['user_id'];
     header("Location: ../page_user/index.php?success=Welcome back!");
 }
-// $stmt = "SELECT * FROM `admin_tbl` WHERE `admin_name`='$main_user_email' AND `admin_pass`='$main_user_pass'";
-// $qry = mysqli_query($conn, $stmt);
-// $row = mysqli_fetch_array($qry);
-
-// if ("admin" == $main_user_email && "admin" == $main_user_pass) {
-//     $_SESSION['admin_id'] = $row['admin_id'];
-//     $_SESSION['msg'] = 4;
-//     header("Location: ../page_admin/index.php");
-// }
-
-// $stmt = "SELECT * FROM `user_main_tbl` WHERE `main_user_email`='$main_user_email' AND `main_user_pass`='$main_user_pass'";
-// $qry = mysqli_query($conn, $stmt);
-// $row = mysqli_fetch_array($qry);
-
-// if (mysqli_num_rows($qry) == 1) {
-//     $_SESSION['uid'] = $row['user_id'];
-//     header("Location: ../page_user/index.php");
-// }
-
 
 // login admin
 if (isset($_POST['login_admin'])) {
+    $admin_name = $_POST['admin_name'];
+    $admin_pass = $_POST['admin_pass'];
+
+    try {
+        $select = $conn->prepare("SELECT `admin_id` FROM `admin_tbl` WHERE `admin_name` = :admin_name AND `admin_pass` = :admin_pass");
+        $select->execute([
+            ':admin_name' => $admin_name,
+            ':admin_pass' => $admin_pass
+        ]);
+        $result = $select->fetchColumn();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    $_SESSION['admin_id'] = $result['admin_id'];
+    header("Location: ../page_admin/index.php?success=Welcome back, Admin!");
 }
 
 
