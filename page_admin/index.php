@@ -15,7 +15,7 @@ get_urlmessage();
 <form action="../php/common.php" method="post" autocomplete="off">
   <input type="text" name="admin_name" id="" placeholder="Name">
   <input type="password" name="admin_pass" id="" placeholder="Password">
-  <button type="submit" name="login_admin" value="Login">Login</button>
+  <button type="submit" name="login_admin_btn" value="Login">Login</button>
 </form>
 
 

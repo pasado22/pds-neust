@@ -92,7 +92,7 @@ if (isset($_POST['login_btn'])) {
 }
 
 // login admin
-if (isset($_POST['login_admin'])) {
+if (isset($_POST['login_admin_btn'])) {
     $admin_name = $_POST['admin_name'];
     $admin_pass = $_POST['admin_pass'];
 
@@ -107,8 +107,9 @@ if (isset($_POST['login_admin'])) {
         echo $e->getMessage();
     }
 
-    $_SESSION['admin_id'] = $result['admin_id'];
-    header("Location: ../page_admin/index.php?success=Welcome back, Admin!");
+    // echo $result;
+    $_SESSION['admin_id'] = $result;
+    header("Location: ../page_admin/home.php?success=Welcome back, Admin!");
 }
 
 

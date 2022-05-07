@@ -68,3 +68,10 @@ function get_urlmessage()
 //         $conn = NULL;
 //     }
 // }
+
+function check_id($data) {
+    if($data) {
+
+    }
+
+}
