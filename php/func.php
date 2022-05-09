@@ -1,4 +1,6 @@
 <?php
+require 'conn.php';
+
 function _headerIndex($title)
 {
     echo "
@@ -23,15 +25,6 @@ function _footerIndex($date)
     ";
 }
 
-// // DEPRICATED
-// function clean_data($data)
-// {
-//     $data = trim($data);
-//     $data = stripslashes($data);
-//     $data = htmlspecialchars($data);
-//     return $data;
-// }
-
 function get_urlmessage()
 {
     if (isset($_GET['error'])) {
@@ -45,7 +38,44 @@ function get_urlmessage()
     }
 }
 
-// // prototype WARNING DEPRICATED
+function check_id($role, $id, $conn) {
+    switch($role) {
+        case 1 :
+            try {
+                $select = $conn->prepare("SELECT * FROM `user_main_tbl` WHERE `user_id` = ?");
+                $select->execute([$id]);
+                $result = $select->fetch();
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            } finally {
+                if (!$result) {
+                    die(header("location: ../index.php?error=Warning your trying to access a restricted page!"));
+                }
+            }
+        break;
+
+        case 2 :
+            // try {
+            //     $select = $conn->prepare("SELECT * FROM `admin_tbl` WHERE `admin_id` = ?");
+            //     $select->execute([$id]);
+            //     $result = $select->fetch();
+            // } catch (PDOException $e) {
+            //     echo $e->getMessage();
+            // } finally {
+            //     if (!$result) {
+            //         die(header("location: ../index.php?error=Warning your trying to access a restricted page!"));
+            //     }
+            // }
+        break;
+
+        default :
+            echo "Error</br><a href='../index.php'>Go Back</a>";
+            // die(header("location: ../index.php"));
+    }
+}
+
+// WARNING PROTOTYPE/DEPRICATED SECTION
+
 // function multi_insert($uid)
 // {
 //     require 'conn.php';
@@ -69,9 +99,10 @@ function get_urlmessage()
 //     }
 // }
 
-function check_id($data) {
-    if($data) {
-
-    }
-
-}
+// function clean_data($data)
+// {
+//     $data = trim($data);
+//     $data = stripslashes($data);
+//     $data = htmlspecialchars($data);
+//     return $data;
+// }

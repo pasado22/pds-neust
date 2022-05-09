@@ -1,11 +1,13 @@
 <?php
-include '../php/func.php';
+require '../php/func.php';
+require '../php/conn.php';
 session_start();
-if(empty($admin_id = $_SESSION['admin_id'])) {
-    die(header("location: ../index.php"));
-}
 
+$admin_id = $_SESSION['admin_id'];
+
+check_id(2, $user_id, $conn);
 get_urlmessage();
 
-echo "</br>$admin_id";
-echo "</br>UWU <a href='../php/logout.php'>Logout</a>";
+echo "</br>$admin_id
+        </br>UWU <a href='../php/logout.php'>Logout</a>";
+

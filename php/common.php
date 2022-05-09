@@ -77,17 +77,17 @@ if (isset($_POST['login_btn'])) {
     }
 
     try {
-        $select = $conn->prepare("SELECT * FROM `user_main_tbl` WHERE `main_user_email` = :main_user_email AND `main_user_pass` = :main_user_pass");
+        $select = $conn->prepare("SELECT `user_id` FROM `user_main_tbl` WHERE `main_user_email` = :main_user_email AND `main_user_pass` = :main_user_pass");
         $select->execute([
             ':main_user_email' => $main_user_email,
             ':main_user_pass' => $main_user_pass
         ]);
-        $row = $select->fetch();
+        $result = $select->fetchColumn();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 
-    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['user_id'] = $result;
     header("Location: ../page_user/index.php?success=Welcome back!");
 }
 

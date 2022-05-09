@@ -1,6 +1,6 @@
 <?php
-session_start();
 require '../php/func.php';
+session_start();
 
 echo $uid = $_SESSION['uid'];
 ?>
