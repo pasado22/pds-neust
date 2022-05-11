@@ -1,5 +1,5 @@
 <?php
-function _headerIndex($title)
+function _userheaderIndex($title)
 {
     echo "
     <!DOCTYPE html>
@@ -14,7 +14,7 @@ function _headerIndex($title)
     ";
 }
 
-function _footerIndex($date)
+function _userfooterIndex($date)
 {
     echo "
     <footer>Copyright &copy; $date</footer>
