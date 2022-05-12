@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2022 at 03:14 PM
+-- Generation Time: May 12, 2022 at 09:17 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -304,10 +304,10 @@ INSERT INTO `user_proof_tbl` (`user_id`, `prf_user_img_name`, `prf_user_img_path
 
 CREATE TABLE `user_psl_tbl` (
   `user_id` varchar(11) NOT NULL,
-  `psl_user_sname` varchar(12) NOT NULL,
-  `psl_user_fname` varchar(12) NOT NULL,
-  `psl_user_mname` varchar(12) NOT NULL,
-  `psl_user_bdate` date NOT NULL,
+  `psl_user_sname` varchar(12) DEFAULT NULL,
+  `psl_user_fname` varchar(12) DEFAULT NULL,
+  `psl_user_mname` varchar(12) DEFAULT NULL,
+  `psl_user_bdate` date DEFAULT NULL,
   `psl_user_bplace` varchar(24) DEFAULT NULL,
   `psl_user_sex` varchar(6) DEFAULT NULL,
   `psl_user_civil` varchar(12) DEFAULT NULL,
