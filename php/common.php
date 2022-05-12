@@ -71,7 +71,7 @@ if (isset($_POST['login_btn'])) {
 
     //redirect to admin login page
     if ("admin" === $main_user_email && "admin" === $main_user_pass) {
-        die(header("Location: ../page_admin/index.php"));
+        die(header("Location: ../page_admin/aindex.php"));
     }
 
     try {
@@ -107,7 +107,7 @@ if (isset($_POST['login_admin_btn'])) {
 
     // echo $result;
     $_SESSION['admin_id'] = $result;
-    header("Location: ../page_admin/home.php?success=Welcome back, Admin!");
+    header("Location: ../page_admin/ahome.php?success=Welcome back, Admin!");
 }
 
 if (isset($_GET['user_pds_btn'])) {
