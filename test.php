@@ -411,14 +411,13 @@ _headerIndex("Test");
         </span>
 
         <br>
-        <img src="" alt="prf_user_img/passport">
+            <img src="" alt="prf_user_img/passport">
         <br>
 
         <span>
             Government Issued ID (i.e.Passport, GSIS, SSS, PRC, Driver's License, etc.)
             PLEASE INDICATE ID Number and Date of Issuance
         </span>
-
         <br>
         <label for="prf_govid_num">Government Issued ID:</label>
         <input type="text" name="prf_govid_num" id="prf_govid_num" value="<?= (isset($arr1['prf_govid_num'])) ?  $arr1['prf_govid_num'] : '' ?>">
@@ -428,6 +427,22 @@ _headerIndex("Test");
         <br>
         <label for="prf_issuance">Date/Place Issuance</label>
         <input type="text" name="prf_issuance" id="prf_issuance" value="<?= (isset($arr1['prf_issuance'])) ?  $arr1['prf_issuance'] : '' ?>">
+        
+        <br>
+        <img src="" alt="prf_signiture_img/digital" name>
+        <span>Signiture(Sign on the Box)</span>
+        <br>
+        <input type="date" name="prf_signiture_date" id="prf_signiture_date" value="<?= (isset($arr1['prf_signiture_date'])) ?  $arr1['prf_signiture_date'] : '' ?>">
+        <span>Date accomplished</span>
+        <br>
+
+        <img src="" alt="prf_thumbmark_img">
+        <span>Right Thumbmark</span>
+        <br>
+        SUBSCRIBED AND SWORN to before me this <input type="text" name="prf_affiant_name" id="prf_affiant_name" value="<?= (isset($arr1['prf_affiant_name'])) ?  $arr1['prf_affiant_name'] : '' ?>"> , affiant exhibiting his/her validly issued government ID as indicated above.
+        <br>
+        <img src="" alt="prf_signiture_img_affi">
+        <span>Person Administrating Oath</span>
     </fieldset>
 </form>
 
