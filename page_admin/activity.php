@@ -4,8 +4,8 @@ require '../php/conn.php';
 require 'adry.php';
 session_start();
 
-$aID = $_SESSION['admin_id'];
-check_id(2, $aID, $conn);
+$admin_id = $_SESSION['admin_id'];
+check_id(2, $admin_id, $conn);
 get_urlmessage();
 
 // BackEnd Code Here!
@@ -17,7 +17,7 @@ try {
     echo $e->getMessage();
 }
 
-echo "</br>$aID";
+echo "</br>$admin_id";
 _headerAdmin("Activity Log");
 ?>
 
