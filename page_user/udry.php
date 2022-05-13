@@ -1,5 +1,5 @@
 <?php
-function _userheaderIndex($title)
+function _userheader($title)
 {
     echo "
     <!DOCTYPE html>
@@ -11,10 +11,13 @@ function _userheaderIndex($title)
       <title>$title</title>
     </head>
     <body>
+    <a href='uindex.php'>Home</a>
+    <br><a href='pds-view.php'>PDS</a>
+    <br><a href='../php/logout.php'>Logout</a>
     ";
 }
 
-function _userfooterIndex($date)
+function _userfooter($date)
 {
     echo "
     <footer>Copyright &copy; $date</footer>

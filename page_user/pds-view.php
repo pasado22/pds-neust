@@ -1,11 +1,11 @@
 <?php
-require 'php/conn.php';
-require 'php/func.php';
+require '../php/conn.php';
+require '../php/func.php';
 require 'udry.php';
 session_start();
 
-$uid = $_SESSION['uid'];
-check_id(1, $uid, $conn);
+$user_id = $_SESSION['user_id'];
+check_id(1, $user_id, $conn);
 
 try {
   $sql = "
@@ -24,7 +24,7 @@ try {
   ";
 
   $select = $conn->prepare($sql);
-  $select->execute([':userid' => $uid]);
+  $select->execute([':userid' => $user_id]);
   $rows = $select->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   echo $e->getMessage();
@@ -35,13 +35,16 @@ foreach ($rows as $data1) {
   $arr1 = $data1;
 }
 
-_headerIndex("Test");
+echo "<h1>Personal Data Sheet</h1>
+        $user_id<br>";
+
+_userheader("Test");
 ?>
 <link rel="stylesheet" href="css/style-user.css">
 <br><br>
 <form action="#" method="get">
   <fieldset disabled="disabled">
-      <span>I. Personal information <a href="http://" target="_blank" rel="noopener noreferrer">Edit</a></span>
+      <span>I. Personal information <a href="uedit1.php?user_id=<?=$arr1['user_id']?>" target="_blank" rel="noopener noreferrer">Edit</a></span>
       <br><br>
       <label for="user_name">2. Surname</label>
       <input type="text" name="user_name" id="user_name" value="<?= (isset($arr1['psl_user_sname'])) ? $arr1['psl_user_sname'] : '' ?>">
@@ -450,4 +453,4 @@ _headerIndex("Test");
 
 
 <br><br>
-<?php _footerIndex(2022); ?>
+<?php _userfooter(2022); ?>
